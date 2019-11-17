@@ -1,0 +1,20 @@
+#  {{- if or (eq .Values.name "api-monevi") (eq .Values.name "web-monevi") }}
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: monevi-ingress-cors
+#   namespace: monevi
+# spec:
+#   headers:
+#     accessControlAllowMethods: ["GET", "OPTIONS", "PUT", "POST", "HEAD"]
+#     accessControlAllowHeaders: ["Pragma", "Cache-Control", "Accept", "Content-Type", "content-type", "Origin", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "authorization", "Response-Content-Disposition", "Connection", "token", "recaptcha_token", "chat_id", "user_id"]
+#     accessControlAllowCredentials: true
+#     accessControlExposeHeaders: ["Location"]
+#     accessControlAllowOrigin: "*"
+#     # accessControlMaxAge: 100
+#     # addVaryHeader: true
+#     customRequestHeaders:
+#       access-control-max-age: ""
+#     # customResponseHeaders:
+#     #   access-control-allow-origin: "https://mv-web-staging.edenlab.com.ua"
+# {{ end }}

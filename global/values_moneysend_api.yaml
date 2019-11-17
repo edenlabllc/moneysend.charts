@@ -1,0 +1,41 @@
+## ECR image and tag##
+image: "307156039661.dkr.ecr.eu-central-1.amazonaws.com/moneysend-prod"
+tag: "0.1.500"
+
+#app env
+env:
+  DB_HOSTNAME: "moneysend-global.cpncrvhv2z7u.us-west-2.rds.amazonaws.com"
+  DB_MIGRATE: true
+  DB_USERNAME: "moneysend"
+  DB_USERPWD: "AjhYPPX7m8qFHChp"
+  ERLANG_COOKIE: "jnjoVJ89Y58VY93Y5V922+hbiHT478+hOIAIFA6B2bcS+bIBSAC8N92A3nt12SaA"
+  HOST: "localhost"
+  MS_BACKEND_HOSTNAME: https://ms-global.edenlab.com.ua
+  PORT: 4000
+  REDIS_HOST: "moneysend-global.ror2zw.ng.0001.usw2.cache.amazonaws.com"
+  SECRET_KEY: "9B(V*A#)#_&)#Cnouvu98tycy89y9vy39v9V}#{]V<}1onocf3#OUoNVOASZVLPS"
+  MP_AES_KEY: test
+  MP_CARD_REQUEST_URL:	https://prod.masterpassturkiye.com/MMIUIMasterPass_V2_LB/MerchantServices/MPGMerchantGetCardService.asmx
+  MP_CLIENT_ID:	34703003
+  MP_HOST: https://ui.masterpassturkiye.com/v2
+  MP_KEY_REQUEST_URL: https://prod.masterpassturkiye.com/MMIUIMasterPass_V2_LB/MerchantServices/MPGGenerateKeyService.asmx
+  MP_SEND_SMS: Y
+  MP_SEND_SMS_LANGUAGE: ukr
+
+
+# Update strategy
+rollingUpdate:
+    maxSurge: "1"
+    maxUnavailable: "0"
+
+# Number of replicas
+replicas: 1
+
+#App name
+name: api
+
+#Health check url
+#path: "/"
+
+#IngressRoute
+HOST: "Host(`ms-global.edenlab.com.ua`)"

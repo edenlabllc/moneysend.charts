@@ -1,0 +1,20 @@
+{{- if .Values.HOST }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ .Values.name}}-ig
+spec:
+  entryPoints:
+    # - web
+    - websecure
+  routes:
+  - match: {{ .Values.HOST}}
+    kind: Rule
+    services:
+    - name: {{ .Values.name}}-svc
+      port: {{ .Values.env.PORT}}
+    # middlewares:
+    # - name: monevi-ingress-cors
+  tls:
+    secretName: tls 
+     {{ end }}
