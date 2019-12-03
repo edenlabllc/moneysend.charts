@@ -10,7 +10,7 @@ env:
   DB_USERPWD: "AjhYPPX7m8qFHChp"
   ERLANG_COOKIE: "jnjoVJ89Y58VY93Y5V922+hbiHT478+hOIAIFA6B2bcS+bIBSAC8N92A3nt12SaA"
   HOST: "localhost"
-  MS_BACKEND_HOSTNAME: https://ms-global.edenlab.com.ua
+  MS_BACKEND_HOSTNAME: https://branded-api.mastercardglobal.co
   PORT: 4000
   REDIS_HOST: "moneysend-global.ror2zw.ng.0001.usw2.cache.amazonaws.com"
   SECRET_KEY: "9B(V*A#)#_&)#Cnouvu98tycy89y9vy39v9V}#{]V<}1onocf3#OUoNVOASZVLPS"
@@ -20,7 +20,7 @@ env:
   MP_HOST: https://ui.masterpassturkiye.com/v2
   MP_KEY_REQUEST_URL: https://prod.masterpassturkiye.com/MMIUIMasterPass_V2_LB/MerchantServices/MPGGenerateKeyService.asmx
   MP_SEND_SMS: Y
-  MP_SEND_SMS_LANGUAGE: ukr
+  MP_SEND_SMS_LANGUAGE: eng
 
 
 # Update strategy
