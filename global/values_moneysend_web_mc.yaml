@@ -1,12 +1,12 @@
 ## ECR image and tag##
-image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web"
-tag: "1.0.17"
+image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web-global"
+tag: "MC.0.0.1"
 
 #app env
 env:
   API_HOST: "https://ms-global.edenlab.com.ua"
   CLIENT_ID: 34703003
-  HOSTNAME: "web-global.edenlab.com.ua"
+  HOSTNAME: "branded-mc.mastercardglobal.co"
   MP_HOST: "https://ui.masterpassturkiye.com"
   PORT: "8080"
   THEME: "MC_BRANDED"
@@ -20,10 +20,10 @@ rollingUpdate:
 replicas: 1
 
 #App name
-name: web
+name: web-mc
 
 #Health check url
 #path: "/"
 
 #IngressRoute
-HOST: "Host(`web-global.edenlab.com.ua`)"
+HOST: "Host(`branded-mc.mastercardglobal.co`)"

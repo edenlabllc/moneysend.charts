@@ -1,20 +1,18 @@
-{{- if .Values.HOST }}
+{{- if eq .Values.name "api" }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ .Values.name}}-ig
+  name: api-ig
 spec:
   entryPoints:
     # - web
     - websecure
   routes:
-  - match: {{ .Values.HOST}}
+  - match: "Host(`branded-api.mastercardglobal.co`)"
     kind: Rule
     services:
-    - name: {{ .Values.name}}-svc
-      port: {{ .Values.env.PORT}}
-    # middlewares:
-    # - name: monevi-ingress-cors
+    - name: api-mc-svc
+      port: 80
   tls:
     secretName: tls-1
      {{ end }}

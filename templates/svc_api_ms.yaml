@@ -1,0 +1,16 @@
+{{- if eq .Values.name "api" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-mc-svc
+  labels:
+    app:  api-ms
+spec:
+  ports:
+  - port: 80
+    targetPort: 4000
+    protocol: TCP
+  selector:
+    app:  api-ms
+  type: ClusterIP
+ {{- end }}

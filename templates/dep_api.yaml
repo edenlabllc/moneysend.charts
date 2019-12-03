@@ -1,0 +1,74 @@
+{{- if eq .Values.name "api" }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: api-ms
+  labels:
+    app: api-ms
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: api-ms
+  template:
+    metadata:
+      labels:
+        app: api-ms
+    spec:
+      containers:
+      - name: api-ms
+        image: {{ .Values.image_api_ms.image}}:{{ .Values.image_api_ms.tag}}
+        command: ["./bin/ms_web"]
+        args: ["foreground"]
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4000
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 4000
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 2
+          failureThreshold: 5
+        livenessProbe:
+          timeoutSeconds: 2
+          initialDelaySeconds: 5
+          failureThreshold: 3
+          tcpSocket:
+            port: 4000
+        env:
+        {{- range $name, $value := .Values.api_env_ms }}
+        {{- if not (empty $value) }}
+        - name: {{ $name | quote }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- end }}
+        - name: SECRET_KEY
+{{- if .Values.api_env_ms.SECRET_KEY  }}
+          value: "{{ .Values.api_env_ms.SECRET_KEY  }}"
+{{ else }}
+          valueFrom:
+            secretKeyRef:
+              name:  ms-api
+              key: SECRET_KEY
+  {{- end }}
+        - name: ERLANG_COOKIE
+{{- if .Values.api_env_ms.SECRET_KEY  }}
+          value: "{{ .Values.api_env_ms.ERLANG_COOKIE  }}"
+{{ else }}
+          valueFrom:
+            secretKeyRef:
+              name:  ms-api
+              key: ERLANG_COOKIE
+  {{- end }}
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+  {{- end }}

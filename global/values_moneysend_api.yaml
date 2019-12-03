@@ -1,27 +1,61 @@
 ## ECR image and tag##
-image: "307156039661.dkr.ecr.eu-central-1.amazonaws.com/moneysend-prod"
-tag: "0.1.500"
-
-#app env
-env:
-  DB_HOSTNAME: "moneysend-global.cpncrvhv2z7u.us-west-2.rds.amazonaws.com"
+image_api_ms:
+  image: 307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global
+  tag: "mc.0.0.2"
+api_env_ms:
   DB_MIGRATE: true
+  HOST: "0.0.0.0"
+  MS_BACKEND_HOSTNAME: "https://branded-api.mastercardglobal.co"
+  PORT: "4000"
+  REDIS_HOST: "moneysend-global.ror2zw.ng.0001.usw2.cache.amazonaws.com"
+  MS_REDIS_DATABASE: "2"
+  MP_CLIENT_ID: "34701708"
+  MONEVI_API_KEY: "MONEVI_API_KEY"
+  DB_HOSTNAME: "moneysend-global.cpncrvhv2z7u.us-west-2.rds.amazonaws.com"
   DB_USERNAME: "moneysend"
   DB_USERPWD: "AjhYPPX7m8qFHChp"
   ERLANG_COOKIE: "jnjoVJ89Y58VY93Y5V922+hbiHT478+hOIAIFA6B2bcS+bIBSAC8N92A3nt12SaA"
-  HOST: "localhost"
-  MS_BACKEND_HOSTNAME: https://branded-api.mastercardglobal.co
-  PORT: 4000
-  REDIS_HOST: "moneysend-global.ror2zw.ng.0001.usw2.cache.amazonaws.com"
   SECRET_KEY: "9B(V*A#)#_&)#Cnouvu98tycy89y9vy39v9V}#{]V<}1onocf3#OUoNVOASZVLPS"
-  MP_AES_KEY: test
-  MP_CARD_REQUEST_URL:	https://prod.masterpassturkiye.com/MMIUIMasterPass_V2_LB/MerchantServices/MPGMerchantGetCardService.asmx
-  MP_CLIENT_ID:	34703003
-  MP_HOST: https://ui.masterpassturkiye.com/v2
-  MP_KEY_REQUEST_URL: https://prod.masterpassturkiye.com/MMIUIMasterPass_V2_LB/MerchantServices/MPGGenerateKeyService.asmx
-  MP_SEND_SMS: Y
-  MP_SEND_SMS_LANGUAGE: eng
+  MP_ENABLED: "false"
+  EX_AWS_REGION: "us-west-2"
+  
+## AWS SQS CONSUMERS ##
+image_ms_aws_sqs_consumers:
+  image: 307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global
+  tag: "queue.0.0.2"
+ms_aws_sqs_consumers_env:
+  DB_MIGRATE: false
+  HOST: "0.0.0.0"
+  MS_BACKEND_HOSTNAME: "https://branded-api.mastercardglobal.co"
+  PORT: "4002"
+  REDIS_HOST: "moneysend-global.ror2zw.ng.0001.usw2.cache.amazonaws.com"
+  MS_REDIS_DATABASE: "2"
+  DB_HOSTNAME: "moneysend-global.cpncrvhv2z7u.us-west-2.rds.amazonaws.com"
+  DB_USERNAME: "moneysend"
+  DB_USERPWD: "AjhYPPX7m8qFHChp"
+  ERLANG_COOKIE: "jnjoVJ89Y58VY93Y5V922+hbiHT478+hOIAIFA6B2bcS+bIBSAC8N92A3nt12SaA"
+  SECRET_KEY: "9B(V*A#)#_&)#Cnouvu98tycy89y9vy39v9V}#{]V<}1onocf3#OUoNVOASZVLPS"
+  MP_ENABLED: "false"
+  EX_AWS_REGION: "us-west-2"
 
+## AWS MS SMS SENDER ##
+image_ms_sms_sender:
+  image: 307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global
+  tag: "sms.0.0.2"
+ms_sms_sender_env:
+  DB_MIGRATE: false
+  HOST: "0.0.0.0"
+  MS_BACKEND_HOSTNAME: "https://branded-api.mastercardglobal.co"
+  PORT: "4001"
+  REDIS_HOST: "moneysend-global.ror2zw.ng.0001.usw2.cache.amazonaws.com"
+  MS_REDIS_DATABASE: "2"
+  DB_HOSTNAME: "moneysend-global.cpncrvhv2z7u.us-west-2.rds.amazonaws.com"
+  DB_USERNAME: "moneysend"
+  DB_USERPWD: "AjhYPPX7m8qFHChp"
+  ERLANG_COOKIE: "jnjoVJ89Y58VY93Y5V922+hbiHT478+hOIAIFA6B2bcS+bIBSAC8N92A3nt12SaA"
+  SECRET_KEY: "9B(V*A#)#_&)#Cnouvu98tycy89y9vy39v9V}#{]V<}1onocf3#OUoNVOASZVLPS"
+  MP_ENABLED: "false"
+  EX_AWS_REGION: "us-west-2"
 
 # Update strategy
 rollingUpdate:
@@ -38,4 +72,4 @@ name: api
 #path: "/"
 
 #IngressRoute
-HOST: "Host(`ms-global.edenlab.com.ua`)"
+# HOST: "Host(`ms-global.edenlab.com.ua`)"

@@ -1,0 +1,74 @@
+{{- if eq .Values.name "api" }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ms-aws-sqs-consumers
+  labels:
+    app: ms-aws-sqs-consumers
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: ms-aws-sqs-consumers
+  template:
+    metadata:
+      labels:
+        app: ms-aws-sqs-consumers
+    spec:
+      containers:
+      - name: ms-aws-sqs-consumers
+        image: {{ .Values.image_ms_aws_sqs_consumers.image}}:{{ .Values.image_ms_aws_sqs_consumers.tag}}
+        command: ["./bin/ms_queue_consumers"]
+        args: ["foreground"]        
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.ms_aws_sqs_consumers_env.PORT  }}
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.ms_aws_sqs_consumers_env.PORT  }}
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 2
+          failureThreshold: 5
+        livenessProbe:
+          timeoutSeconds: 2
+          initialDelaySeconds: 5
+          failureThreshold: 3
+          tcpSocket:
+            port: {{ .Values.ms_aws_sqs_consumers_env.PORT  }}
+        env:
+        {{- range $name, $value := .Values.ms_aws_sqs_consumers_env }}
+        {{- if not (empty $value) }}
+        - name: {{ $name | quote }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- end }}
+        - name: SECRET_KEY
+{{- if .Values.ms_aws_sqs_consumers_env.SECRET_KEY  }}
+          value: "{{ .Values.ms_aws_sqs_consumers_env.SECRET_KEY  }}"
+{{ else }}
+          valueFrom:
+            secretKeyRef:
+              name:  ms-api
+              key: SECRET_KEY
+  {{- end }}
+        - name: ERLANG_COOKIE
+{{- if .Values.ms_aws_sqs_consumers_env.SECRET_KEY  }}
+          value: "{{ .Values.ms_aws_sqs_consumers_env.ERLANG_COOKIE  }}"
+{{ else }}
+          valueFrom:
+            secretKeyRef:
+              name:  ms-api
+              key: ERLANG_COOKIE
+  {{- end }}
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+  {{- end }}

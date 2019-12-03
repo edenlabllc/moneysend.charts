@@ -1,3 +1,4 @@
+{{- if ne .Values.name "api" }}
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -66,3 +67,4 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "1"
+  {{- end }}

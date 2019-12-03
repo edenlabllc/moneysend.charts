@@ -1,0 +1,74 @@
+{{- if eq  .Values.name "api" }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ms-sms-sender
+  labels:
+    app: ms-sms-sender
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: ms-sms-sender
+  template:
+    metadata:
+      labels:
+        app: ms-sms-sender
+    spec:
+      containers:
+      - name: ms-sms-sender
+        image: {{ .Values.image_ms_sms_sender.image}}:{{ .Values.image_ms_sms_sender.tag}}
+        command: ["./bin/sms_sender"]
+        args: ["foreground"]        
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.ms_sms_sender_env.PORT  }}
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.ms_sms_sender_env.PORT  }}
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 2
+          failureThreshold: 5
+        livenessProbe:
+          timeoutSeconds: 2
+          initialDelaySeconds: 5
+          failureThreshold: 3
+          tcpSocket:
+            port: {{ .Values.ms_sms_sender_env.PORT  }}
+        env:
+        {{- range $name, $value := .Values.ms_sms_sender_env }}
+        {{- if not (empty $value) }}
+        - name: {{ $name | quote }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- end }}
+        - name: SECRET_KEY
+{{- if .Values.ms_sms_sender_env.SECRET_KEY  }}
+          value: "{{ .Values.ms_sms_sender_env.SECRET_KEY  }}"
+{{ else }}
+          valueFrom:
+            secretKeyRef:
+              name:  ms-api
+              key: SECRET_KEY
+  {{- end }}
+        - name: ERLANG_COOKIE
+{{- if .Values.ms_sms_sender_env.SECRET_KEY  }}
+          value: "{{ .Values.ms_sms_sender_env.ERLANG_COOKIE  }}"
+{{ else }}
+          valueFrom:
+            secretKeyRef:
+              name:  ms-api
+              key: ERLANG_COOKIE
+  {{- end }}
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+  {{- end }}

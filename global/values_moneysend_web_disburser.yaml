@@ -1,0 +1,29 @@
+## ECR image and tag##
+image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web-global"
+tag: "DISBURSER.0.0.1"
+
+#app env
+env:
+  API_HOST: "https://branded-api.mastercardglobal.co"
+  CLIENT_ID: 34703003
+  HOSTNAME: "branded-disburser.mastercardglobal.co"
+  MP_HOST: "https://ui.masterpassturkiye.com"
+  PORT: "8080"
+  THEME: "MC_BRANDED"
+
+# Update strategy
+rollingUpdate:
+    maxSurge: "1"
+    maxUnavailable: "0"
+
+# Number of replicas
+replicas: 1
+
+#App name
+name: web-disburser
+
+#Health check url
+#path: "/"
+
+#IngressRoute
+HOST: "Host(`branded-disburser.mastercardglobal.co`)"
