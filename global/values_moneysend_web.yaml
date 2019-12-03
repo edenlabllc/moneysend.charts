@@ -9,6 +9,7 @@ env:
   HOSTNAME: "web-global.edenlab.com.ua"
   MP_HOST: "https://ui.masterpassturkiye.com"
   PORT: "8080"
+  THEME: "MC_BRANDED"
 
 # Update strategy
 rollingUpdate:
