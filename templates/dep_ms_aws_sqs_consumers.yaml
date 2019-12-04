@@ -11,6 +11,10 @@ spec:
   selector:
     matchLabels:
       app: ms-aws-sqs-consumers
+  strategy:
+    rollingUpdate:
+      maxSurge: {{ .Values.rollingUpdate.maxSurge }}
+      maxUnavailable: {{ .Values.rollingUpdate.maxUnavailable }}
   template:
     metadata:
       labels:

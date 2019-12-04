@@ -11,6 +11,10 @@ spec:
   selector:
     matchLabels:
       app: api-ms
+  strategy:
+    rollingUpdate:
+      maxSurge: {{ .Values.rollingUpdate.maxSurge }}
+      maxUnavailable: {{ .Values.rollingUpdate.maxUnavailable }}
   template:
     metadata:
       labels:
