@@ -1,6 +1,6 @@
 ## ECR image and tag##
 image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web-global"
-tag: "DISBURSER.472f586"
+tag: "DISBURSER.64bbdcb"
 
 #app env
 env:
