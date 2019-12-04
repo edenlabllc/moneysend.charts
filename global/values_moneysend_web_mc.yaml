@@ -1,12 +1,12 @@
 ## ECR image and tag##
 image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web-global"
-tag: "MC.0.0.1"
+tag: "MC.472f586"
 
 #app env
 env:
-  API_HOST: "https://ms-global.edenlab.com.ua"
+  API_HOST: "https://branded-api.mastercardglobal.co"
   CLIENT_ID: 34703003
-  HOSTNAME: "branded-mc.mastercardglobal.co"
+  HOSTNAME: "payments.mastercardglobal.co"
   MP_HOST: "https://ui.masterpassturkiye.com"
   PORT: "8080"
   THEME: "MC_BRANDED"
@@ -26,4 +26,4 @@ name: web-mc
 #path: "/"
 
 #IngressRoute
-HOST: "Host(`branded-mc.mastercardglobal.co`)"
+HOST: "Host(`payments.mastercardglobal.co`)"
