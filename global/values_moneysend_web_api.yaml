@@ -6,12 +6,8 @@ args: ["foreground"]
 
 #app env
 env:
-  API_HOST: "https://branded-api.mastercardglobal.co"
-  CLIENT_ID: 34703003
-  HOSTNAME: "payments.mastercardglobal.co"
-  MP_HOST: "https://ui.masterpassturkiye.com"
+  HOST: "0.0.0.0"
   PORT: "8080"
-  THEME: "MC_BRANDED"
 
 # Update strategy
 rollingUpdate:
@@ -28,4 +24,4 @@ name: web-api
 path: "/health"
 
 #IngressRoute
-HOST: "Host(`payments.mastercardglobal.co`)"
+HOST: "Host(`admin.mastercardglobal.co`)"
