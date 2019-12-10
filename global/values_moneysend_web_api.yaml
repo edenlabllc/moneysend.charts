@@ -1,12 +1,11 @@
 ## ECR image and tag##
 image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global"
-tag: "web.eed5873"
+tag: "web.6acfdfe"
 #command: ["./bin/ms_admin_web"]
 #args: ["foreground"]
 
 #app env
 env:
-  SECRET_KEY_BASE: "IoEsui54MH/6gYNCJDUKOQ1X9cJ3DUjw923IWEXCzCi6xaJ4o91Gci3NjSyY7GT7"
   HOST: "admin.mastercardglobal.co"
   PORT: "4000"
 
