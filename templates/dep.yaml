@@ -24,6 +24,12 @@ spec:
       containers:
       - name: {{ .Values.name}}
         image: {{ .Values.image}}:{{ .Values.tag}}
+    {{- if .Values.command }}
+        command: {{ .Values.command}}
+    {{- end}}
+    {{- if .Values.args }}
+        args: {{ .Values.args}}
+    {{- end}}
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.env.PORT}}

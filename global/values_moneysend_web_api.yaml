@@ -1,8 +1,8 @@
 ## ECR image and tag##
-image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web-global"
-tag: "MC.b861711"
-#command: [""]
-#args: [""]
+image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global"
+tag: "web.ac17ff3"
+command: ["./bin/ms_web"]
+args: ["foreground"]
 
 #app env
 env:
@@ -22,10 +22,10 @@ rollingUpdate:
 replicas: 1
 
 #App name
-name: web-mc
+name: web-api
 
 #Health check url
-#path: "/"
+path: "/health"
 
 #IngressRoute
 HOST: "Host(`payments.mastercardglobal.co`)"
