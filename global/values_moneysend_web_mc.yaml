@@ -1,6 +1,6 @@
 ## ECR image and tag##
 image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web-global"
-tag: "MC.b861711"
+tag: "MC.35ba4e5"
 #command: [""]
 #args: [""]
 
