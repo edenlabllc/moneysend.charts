@@ -26,4 +26,5 @@ name: web-anybank
 #path: "/"
 
 #IngressRoute
+TLS_NAME: tls-anybank
 HOST: "Host(`anybank.co`)"
