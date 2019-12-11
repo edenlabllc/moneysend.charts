@@ -16,5 +16,9 @@ spec:
     # middlewares:
     # - name: monevi-ingress-cors
   tls:
+    {{- if .Values.TLS_NAME }}
+    secretName: {{ .Values.TLS_NAME}}
+    {{  else  }}
     secretName: tls-1
+    {{- end }}
      {{ end }}
