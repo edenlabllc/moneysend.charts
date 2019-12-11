@@ -1,6 +1,6 @@
 ## ECR image and tag##
 image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global"
-tag: "web.local"
+tag: "web.fe1d139"
 #command: ["./bin/ms_admin_web"]
 #args: ["foreground"]
 
