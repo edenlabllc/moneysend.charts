@@ -1,7 +1,7 @@
 ## ECR image and tag##
 image_api_ms:
   image: 307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global
-  tag: "mc.b8a0d73"
+  tag: "mc.8db80cc"
 api_env_ms:
   DB_MIGRATE: true
   HOST: "0.0.0.0"
@@ -22,7 +22,7 @@ api_env_ms:
 ## AWS SQS CONSUMERS ##
 image_ms_aws_sqs_consumers:
   image: 307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global
-  tag: "queue.b8a0d73"
+  tag: "queue.8db80cc"
 ms_aws_sqs_consumers_env:
   DB_MIGRATE: false
   HOST: "0.0.0.0"
@@ -41,7 +41,7 @@ ms_aws_sqs_consumers_env:
 ## AWS MS SMS SENDER ##
 image_ms_sms_sender:
   image: 307156039661.dkr.ecr.eu-west-1.amazonaws.com/ms-api-global
-  tag: "sms.b8a0d73"
+  tag: "sms.8db80cc"
 ms_sms_sender_env:
   DB_MIGRATE: false
   HOST: "0.0.0.0"
