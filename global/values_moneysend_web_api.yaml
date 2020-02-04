@@ -8,6 +8,9 @@ tag: "web.a760737"
 env:
   HOST: "admin.mastercardglobal.co"
   PORT: "4000"
+  DB_HOSTNAME: "moneysend-global.cpncrvhv2z7u.us-west-2.rds.amazonaws.com"
+  DB_USERNAME: "moneysend"
+  DB_USERPWD: "AjhYPPX7m8qFHChp"
 
 # Update strategy
 rollingUpdate:
