@@ -8,7 +8,7 @@ tag: "simple_portal.35ba4e5"
 env:
   API_HOST: "https://branded-api.mastercardglobal.co"
   CLIENT_ID: 34703003
-  HOSTNAME: "anyinsurer.mastercardglobal.co"
+  HOSTNAME: "simple.mastercardglobal.co"
   MP_HOST: "https://ui.masterpassturkiye.com"
   PORT: "8080"
   THEME: "SIMPLE_PORTAL"
@@ -28,4 +28,4 @@ name: web-disburser
 #path: "/"
 
 #IngressRoute
-HOST: "Host(`anyinsurer.mastercardglobal.co`)"
+HOST: "Host(`simple.mastercardglobal.co`)"
