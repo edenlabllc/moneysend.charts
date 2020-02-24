@@ -22,7 +22,7 @@ rollingUpdate:
 replicas: 1
 
 #App name
-name: web-disburser
+name: web-simple-portal
 
 #Health check url
 #path: "/"
