@@ -1,6 +1,6 @@
 ## ECR image and tag##
 image: "307156039661.dkr.ecr.eu-west-1.amazonaws.com/web-global"
-tag: "co_branded.28d2814"
+tag: "co_branded.a77b980"
 
 #app env
 env:
@@ -27,4 +27,4 @@ name: web-co-branded
 
 #IngressRoute
 TLS_NAME: tls-co-branded
-HOST: "Host(`test.co`)"
+HOST: "Host(`payment.mastercardglobal.co`)"
